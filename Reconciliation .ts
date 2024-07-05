@@ -8,7 +8,7 @@ function main(workbook: ExcelScript.Workbook) {
 
 	newTable.setName("avstemming");
 	
-	let posenummer = newTable.addColumn(-1, null, "");
+	let posenummer = newTable.addColumn(-1, null, "Posenummer");
 
 
 	posenummer.getRangeBetweenHeaderAndTotal().setFormula("=INDEX(MID([@Fritekst],ROW(INDIRECT(\"1:\"&LEN([@Fritekst]))),12),MATCH(TRUE,ISNUMBER(--MID([@Fritekst],ROW(INDIRECT(\"1:\"&LEN([@Fritekst]))),12)),0))");
@@ -21,11 +21,11 @@ function main(workbook: ExcelScript.Workbook) {
 
 	/* Add "Product line" as a row hierarchy in the pivot table */
 
-	pt.addRowHierarchy(pt.getHierarchy(""));
+	pt.addRowHierarchy(pt.getHierarchy("Posenummer"));
 
-	pt.addDataHierarchy(pt.getHierarchy(""))
+	pt.addDataHierarchy(pt.getHierarchy("Posenummer"))
 
-	pt.addColumnHierarchy(pt.getHierarchy(""));
+	pt.addColumnHierarchy(pt.getHierarchy("Posenummer"));
 
 
 	let sok = workbook.addWorksheet("Søk")
